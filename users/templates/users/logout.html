@@ -1,0 +1,22 @@
+{% extends 'blog/base.html' %} 
+{% block content %}
+
+<div class="container">
+    <div class="row">
+      <div class="col-lg-10 col-xl-9 mx-auto">
+        <div class="card flex-row my-5 border-0 shadow rounded-4 overflow-hidden poqiwehfoiwef">
+          <div class="card-img-left d-none d-md-flex">
+            <!-- Background image for card set in CSS! -->
+          </div>
+          <div class="card-body p-4 p-sm-5">
+            <h5 class="card-title text-center mb-5 fw-light fs-2 text-light">You have been logged Out</h5>
+            <div class="d-block text-center fs-5">
+                <a class="d-inline mt-2 small text-decoration-none fs-4" href="{% url 'login' %}">Log In Again</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock content %}

@@ -10,7 +10,7 @@
             <!-- Background image for card set in CSS! -->
           </div>
           <div class="card-body p-4 p-sm-5">
-            <h5 class="card-title text-center mb-5 fw-light fs-2 text-light">Join Today</h5>
+            <h5 class="card-title text-center mb-5 fw-light fs-2 text-light">Log In</h5>
             <form method="POST">
             {% csrf_token %}
               <div class="form-floating mb-3">
@@ -19,33 +19,21 @@
                   {% comment %} <input type="text" class="form-control" id="floatingInputUsername" placeholder="myusername" required autofocus> {% endcomment %}
               </div>
 
-              <div class="form-floating mb-3">
-                {% render_field form.email class='emailinput form-control' placeholder="name@example.com" id="id_email" type="email" name="email"%}
-                <label for="id_email" class="form-label requiredField">Email address*</label>
-                {% comment %} <input type="email" class="form-control" id="floatingInputEmail" placeholder="name@example.com"> {% endcomment %}
-              </div>
-
               <hr class='text-light'>
 
               <div class="form-floating mb-3">
-                {% render_field form.password1 class='textinput textInput form-control' autocomplete="new-password" placeholder="floatingPassword" id="id_password1" type="password" name="password1" required=True%}
+                {% render_field form.password class='textinput textInput form-control' autocomplete="new-password" placeholder="floatingPassword" id="id_password1" type="password" name="password" required=True%}
                 <label for="id_password1" class="form-label requiredField">Password*</label>
                 {% comment %} <input type="password" class="form-control" id="floatingPassword" placeholder="Password"> {% endcomment %}
               </div>
 
-              <div class="form-floating mb-3">
-                {% render_field form.password2 class='textinput textInput form-control' autocomplete="new-password" placeholder="Confirm Password" id="id_password2" type="password" name="password2" required=True%}
-                <label for="id_password2" class="form-label requiredField">Confirm Password*</label>
-                {% comment %} <input type="password" class="form-control" id="floatingPasswordConfirm" placeholder="Confirm Password"> {% endcomment %}
-              </div>
-
               <div class="d-grid mb-2">
-                <input class="btn btn-lg btn-primary btn-login fw-bold text-uppercase" type="submit" value='Sign Up'>
+                <input class="btn btn-lg btn-primary btn-login fw-bold text-uppercase" type="submit" value='Login'>
               </div>
 
               <hr class="my-4 text-light">
               <div class="d-block text-center fs-5">
-                  <p class="d-inline text-light">Already have an account?</p> <a class="d-inline mt-2 small text-decoration-none" href="{% url 'login' %}">Sign In</a>
+                  <p class="d-inline text-light">Need an account?</p> <a class="d-inline mt-2 small text-decoration-none" href="{% url 'register' %}">Sign Up Now</a>
               </div>
               </div>
 
