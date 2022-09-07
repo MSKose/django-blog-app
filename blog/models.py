@@ -1,3 +1,16 @@
 from django.db import models
+from django.utils import timezone
+from django.contrib.auth.models import User
 
-# Create your models here.
+
+class Post(models.Model):
+    title = models.CharField(max_length=100)
+    content = models.TextField()
+    date_posted = models.DateTimeField(default=timezone.now)
+    # since one post can have one author but one author can have multiple posts we use many-to-1 relation
+    # since we want to delete the posts related to the author if author is deleted, we use on_delete=models.CASCADE
+    # but, notice that the opposite is not true; if a post is deleted author won't be deleted. It is called cascade for a reason
+    author = models.ForeignKey(User, on_delete=models.CASCADE) 
+
+    def __str__(self):
+        return self.title

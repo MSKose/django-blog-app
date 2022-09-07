@@ -1,0 +1,44 @@
+
+{% extends 'blog/base.html' %} 
+{% block content %}
+
+
+<section>
+    <article class="media content-section container">
+    	<div class="row container css">
+            {% for post in posts %}
+                    <div class="card profile-card-5 col-md-4">
+                        <div class="card-img-block">
+                                <img class="card-img-top" src="https://images.unsplash.com/photo-1517832207067-4db24a2ae47c" alt="Card image cap">
+                        </div>
+
+                        <div class="card-body pt-0">
+                            <div class='d-flex justify-content-center'>
+                                <h2 class="card-title">{{ post.author }}</h2>
+                            </div>
+                            <h4><a class="article-title decoration-none" href="#">{{ post.title }}</a></h4>
+                            <p class="card-text">{{ post.content }}</p>
+                            <div>
+                                <div style="display: inline; margin-right: 15px;">
+                                    <i class="fa-solid fa-comment"></i> <small>0</small>
+                                </div>
+
+                                <div style="display: inline; margin-right: 15px;">
+                                    <i class="fa-solid fa-eye"></i> <small>56</small>
+                                </div>
+
+                                <div style="display: inline">
+                                    <i class="fa-solid fa-heart"></i> <small>8</small>
+                                </div>
+                            </div>
+                            {% comment %} <small class="text-muted">{{ post.date_posted|date:"F d, Y" }}</small> {% endcomment %}
+                            <small class="text-muted">Posted {{ post.date_posted|timesince }} ago</small>
+                        </div>
+                    </div>
+                    
+            {% endfor %}
+        </div>
+    </article>
+</section>
+
+{% endblock content %}

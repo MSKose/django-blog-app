@@ -1,4 +1,9 @@
+@import url("https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css");
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700');
+@import url('https://fonts.googleapis.com/css?family=Libre+Baskerville:400,700');
+
 body {
+  font-family: 'Open Sans', sans-serif;
   background: url("../images/bg.jpeg") no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -10,6 +15,9 @@ li a.nav-link {
   color: #fff;
   font-size: 1.3rem;
   font-weight: 400 !important;
+}
+.navbar-css {
+  box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.63);
 }
 .navbar-scroll .nav-link,
 .navbar-scroll .navbar-toggler-icon,
@@ -84,4 +92,82 @@ li a.nav-link {
     backdrop-filter: blur(10px);
   opacity: 1 !important;
   background: rgba(0, 0, 0, 0.6);
+}
+
+/* Card Css */
+*:hover{
+    -webkit-transition: all 1s ease;
+    transition: all 1s ease;
+}
+section{
+    float:left;
+    width:100%;
+    padding:30px 0;
+}
+h1{float:left; width:100%; color:#232323; margin-bottom:30px; font-size: 14px;}
+h1 span{font-family: 'Libre Baskerville', serif; display:block; font-size:45px; text-transform:none; margin-bottom:20px; margin-top:30px; font-weight:700}
+h1 a{color:#131313; font-weight:bold;}
+
+/*Profile Card 5*/
+/* .media.content-section.container{
+  display: flex;
+  justify-content: center;
+} */
+
+.row.container.css {
+  gap: 15px;
+  justify-content: space-around;
+}
+
+.profile-card-5{
+  width: 410px;
+  color:#ffffff;
+  margin-top:50px;
+  backdrop-filter: blur(5px);
+  opacity: 1 !important;
+  background: rgba(0, 0, 0, 0.8);
+  /* box-shadow: 0 0 40px rgba(0,0,0,0.23); */
+  box-shadow: 0px 5px 20px 1px rgba(0,0,0,0.73);
+  
+}
+.profile-card-5 .btn{
+    border-radius:2px;
+    text-transform:uppercase;
+    font-size:12px;
+    padding:7px 20px;
+}
+.profile-card-5 .card-img-block {
+    /* width: 50%; */
+    margin: 0 auto;
+    position: relative;
+    top: -30px;
+}
+.profile-card-5 .card-img-block img{
+    height: 150px;
+    width: 150px;
+    object-fit: cover;
+    border-radius:50%;
+    box-shadow: 0 0 50px rgba(0,0,0,0.93);
+}
+.profile-card-5 h5{
+    font-weight:600;
+}
+.profile-card-5 p{
+    font-size:14px;
+    font-weight:300;
+}
+.profile-card-5 .btn-primary{
+    background-color:#4E5E30;
+    border-color:#4E5E30;
+}
+
+.card-body.pt-0  .card-text{
+  /* display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;  
+  overflow: hidden; */
+  text-overflow: ellipsis;
+  overflow: hidden; 
+  width: 350px; 
+  white-space: nowrap;
 }
