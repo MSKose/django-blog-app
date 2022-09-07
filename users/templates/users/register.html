@@ -12,7 +12,7 @@
           <div class="card-body p-4 p-sm-5">
             <h5 class="card-title text-center mb-5 fw-light fs-2 text-light">Join Today</h5>
             <form method="POST">
-            {% csrf_token %}
+              {% csrf_token %}
               <div class="form-floating mb-3">
                 {% render_field form.username class='textinput textInput form-control' placeholder="myusername" id="id_username" type="text" name="username" required=True autofocus=True%}
                 <label for="id_username" class="form-label requiredField">Username*</label>

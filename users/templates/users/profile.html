@@ -1,0 +1,47 @@
+{% extends 'blog/base.html' %} 
+{% block content %}
+{%load widget_tweaks %} 
+
+        <div class="content-section">
+            <div class="media">
+            <img class="rounded-circle account-img" src="{{ user.profile.image.url }}" style="height: 125px; width: 125px;">
+            <div class="media-body">
+                <h2 class="account-heading">{{ user.username }}</h2>
+                <p class="text-secondary">{{ user.email }}</p>
+            </div>
+            </div>
+            <div class="card-body p-4 p-sm-5">
+                <h5 class="card-title text-center mb-5 fw-light fs-2 text-light">Profile Info</h5>
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="form-floating mb-3">
+                  {% render_field u_form.username class='textinput textInput form-control' placeholder="myusername" id="id_username" type="text" name="username" required=True autofocus=True%}
+                  <label for="id_username" class="form-label requiredField">Username*</label>
+                    {% comment %} <input type="text" class="form-control" id="floatingInputUsername" placeholder="myusername" required autofocus> {% endcomment %}
+                </div>
+  
+                <div class="form-floating mb-3">
+                  {% render_field u_form.email class='emailinput form-control' placeholder="name@example.com" id="id_email" type="email" name="email"%}
+                  <label for="id_email" class="form-label requiredField">Email address*</label>
+                  {% comment %} <input type="email" class="form-control" id="floatingInputEmail" placeholder="name@example.com"> {% endcomment %}
+                </div>
+  
+                <hr class='text-light'>
+  
+                
+  
+                <div class="d-grid mb-2">
+                  <input class="btn btn-lg btn-primary btn-login fw-bold text-uppercase" type="submit" value='Sign Up'>
+                </div>
+  
+                <hr class="my-4 text-light">
+                <div class="d-block text-center fs-5">
+                    <a class="d-inline mt-2 small text-decoration-none" href="{% url 'login' %}">Update</a>
+                </div>
+                </div>
+  
+              </form>
+              </div>
+        </div>
+
+{% endblock content %}
