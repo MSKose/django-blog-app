@@ -142,6 +142,7 @@ h1 a{color:#131313; font-weight:bold;}
     position: relative;
     top: -30px;
 }
+
 .profile-card-5 .card-img-block img{
     height: 150px;
     width: 150px;
@@ -149,6 +150,12 @@ h1 a{color:#131313; font-weight:bold;}
     border-radius:50%;
     box-shadow: 0 0 50px rgba(0,0,0,0.93);
 }
+
+.profile-card-5 .card-img-block.only-on-profile img{
+  height: 180px;
+  width: 180px;
+}
+
 .profile-card-5 h5{
     font-weight:600;
 }
@@ -168,6 +175,6 @@ h1 a{color:#131313; font-weight:bold;}
   overflow: hidden; */
   text-overflow: ellipsis;
   overflow: hidden; 
-  width: 350px; 
+  width: 270px; 
   white-space: nowrap;
 }

@@ -1,7 +1,7 @@
 {% extends 'blog/base.html' %} 
 {% block content %}
 {%load widget_tweaks %} 
-
+        {% comment %} 
         <div class="content-section">
             <div class="media">
             <img class="rounded-circle account-img" src="{{ user.profile.image.url }}" style="height: 125px; width: 125px;">
@@ -12,36 +12,57 @@
             </div>
             <div class="card-body p-4 p-sm-5">
                 <h5 class="card-title text-center mb-5 fw-light fs-2 text-light">Profile Info</h5>
-            <form method="POST" enctype="multipart/form-data">
-                {% csrf_token %}
-                <div class="form-floating mb-3">
-                  {% render_field u_form.username class='textinput textInput form-control' placeholder="myusername" id="id_username" type="text" name="username" required=True autofocus=True%}
-                  <label for="id_username" class="form-label requiredField">Username*</label>
-                    {% comment %} <input type="text" class="form-control" id="floatingInputUsername" placeholder="myusername" required autofocus> {% endcomment %}
-                </div>
-  
-                <div class="form-floating mb-3">
-                  {% render_field u_form.email class='emailinput form-control' placeholder="name@example.com" id="id_email" type="email" name="email"%}
-                  <label for="id_email" class="form-label requiredField">Email address*</label>
-                  {% comment %} <input type="email" class="form-control" id="floatingInputEmail" placeholder="name@example.com"> {% endcomment %}
-                </div>
-  
-                <hr class='text-light'>
-  
-                
-  
-                <div class="d-grid mb-2">
-                  <input class="btn btn-lg btn-primary btn-login fw-bold text-uppercase" type="submit" value='Sign Up'>
-                </div>
-  
-                <hr class="my-4 text-light">
-                <div class="d-block text-center fs-5">
-                    <a class="d-inline mt-2 small text-decoration-none" href="{% url 'login' %}">Update</a>
-                </div>
-                </div>
-  
-              </form>
+            
               </div>
-        </div>
+        </div> {% endcomment %}
+
+          <article class="media content-section container d-flex justify-content-center">
+            <div class="row container css">
+                <div class="card profile-card-5 col-md-4">
+                    <div class="card-img-block only-on-profile">
+                            <img class="card-img-top" src="{{ user.profile.image.url }}" alt="Card image cap">
+                    </div>
+
+                    <div class="card-body pt-0">
+                        <div class='d-flex justify-content-center'>
+                            <h2 class="card-title d-block">{{ user.username }}</h2>
+                        </div>
+
+                        <div class='d-flex justify-content-center'>
+                            <small class="text-muted">{{ user.email }}</small>
+                        </div>
+
+                        <br>
+                        <h4>Update Profile</h4>
+                        <hr class='text-light'>
+                        <form method="POST" enctype="multipart/form-data">
+                          {% csrf_token %}
+
+                            <div class="mb-3">
+                              <label for="id_username" class="form-label requiredField">Username*</label>
+                              {% render_field u_form.username class='textinput textInput form-control' placeholder="myusername" id="id_username" type="text" name="username" required=True autofocus=True%}
+                            </div>
+                            
+                            <div class="mb-3">
+                              <label for="id_username" class="form-label requiredField">E-mail*</label>
+                              {% render_field u_form.email class='textinput textInput form-control' placeholder="myusername" id="id_username" type="email" name="email" required=True%}
+                            </div>
+                            
+                            <div class="mb-3">
+                              <label for="formFile" class="form-label">Profile Picture</label>
+                              {% render_field p_form.image class='form-control' placeholder="myusername" id="formFile" type="file" name="email" required=True %}
+                            </div>
+              
+                            <div class="d-grid mb-2">
+                              <input class="btn btn-lg btn-success btn-login fw-bold text-uppercase" type="submit"  style="border-radius:5px;" value='Update'>
+                            </div>
+              
+                            {% comment %} <hr class="my-4 text-light"> {% endcomment %}
+              
+                          </form>
+                    </div>
+                </div>
+              </div>
+          </article>
 
 {% endblock content %}
