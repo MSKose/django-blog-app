@@ -16,7 +16,7 @@
                             <div class='d-flex justify-content-center'>
                                 <h2 class="card-title">{{ post.author }}</h2>
                             </div>
-                            <h4><a class="article-title decoration-none" href="#">{{ post.title }}</a></h4>
+                            <h4><a class="article-title decoration-none" href="{% url 'post-detail' post.pk %}">{{ post.title }}</a></h4>
                             <p class="card-text">{{ post.content }}</p>
                             <div>
                                 <div style="display: inline; margin-right: 15px;">
