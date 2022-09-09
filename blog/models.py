@@ -12,7 +12,12 @@ class Post(models.Model):
     # since we want to delete the posts related to the author if author is deleted, we use on_delete=models.CASCADE
     # but, notice that the opposite is not true; if a post is deleted author won't be deleted. It is called cascade for a reason
     author = models.ForeignKey(User, on_delete=models.CASCADE) 
+
+    # see here for view reference: https://stackoverflow.com/a/61745605
     blog_view = models.IntegerField(default=0)
+
+    # I mainly followed this article for reload-free like functionality: https://blog.devgenius.io/django-and-htmx-part-1-ff629ae048f1
+    likes = models.ManyToManyField(User, blank=True, related_name="collected_votes")
 
 
     def __str__(self):

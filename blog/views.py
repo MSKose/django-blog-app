@@ -35,7 +35,7 @@ class PostDetailView(LoginRequiredMixin, DetailView):
     # is a detailview, django's gonna look for a template named 'blog/post_detail.html'. 
     # not defining our context_object_name, we'll have to use 'object' for every post in our blog/post_detail.html template
 
-    
+    #? view count part
     def get_object(self):
         views = super().get_object()
         views.blog_view += 1
@@ -80,6 +80,23 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
         if self.request.user == post.author:
             return True
         return False
+
+
+
+def like_post(request, id):
+    if request.method == "POST":
+        instance = Post.objects.get(id=id)
+        if not instance.likes.filter(id=request.user.id).exists():
+            instance.likes.add(request.user)
+            instance.save() 
+            print(instance)
+            return render( request, 'blog/likes_area.html', context={'post':instance})
+        else:
+            instance.likes.remove(request.user)
+            instance.save() 
+            print(instance)
+            return render( request, 'blog/likes_area.html', context={'post':instance})
+
 
 def about(request):
     return render(request, 'blog/about.html')

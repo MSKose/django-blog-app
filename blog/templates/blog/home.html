@@ -23,15 +23,18 @@
                                     <i class="fa-solid fa-comment"></i> <small>0</small>
                                 </div>
 
-                                <div style="display: inline; margin-right: 15px;">
+                                <div style="display: inline; margin-right: 7px;">
                                     <i class="fa-solid fa-eye"></i> <small>{{post.blog_view}}</small>
                                 </div>
 
-                                <div style="display: inline">
+                                {% include "blog/likes_area.html" %}
+
+                                
+
+                                {% comment %} <div style="display: inline">
                                     <i class="fa-solid fa-heart"></i> <small>8</small>
-                                </div>
+                                </div> {% endcomment %}
                             </div>
-                            {% comment %} <small class="text-muted">{{ post.date_posted|date:"F d, Y" }}</small> {% endcomment %}
                             <small class="text-muted">Posted {{ post.date_posted|timesince }} ago</small>
                         </div>
                     </div>
