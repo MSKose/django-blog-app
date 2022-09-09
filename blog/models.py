@@ -12,6 +12,8 @@ class Post(models.Model):
     # since we want to delete the posts related to the author if author is deleted, we use on_delete=models.CASCADE
     # but, notice that the opposite is not true; if a post is deleted author won't be deleted. It is called cascade for a reason
     author = models.ForeignKey(User, on_delete=models.CASCADE) 
+    blog_view = models.IntegerField(default=0)
+
 
     def __str__(self):
         return self.title

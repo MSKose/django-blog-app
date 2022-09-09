@@ -35,6 +35,13 @@ class PostDetailView(LoginRequiredMixin, DetailView):
     # is a detailview, django's gonna look for a template named 'blog/post_detail.html'. 
     # not defining our context_object_name, we'll have to use 'object' for every post in our blog/post_detail.html template
 
+    
+    def get_object(self):
+        views = super().get_object()
+        views.blog_view += 1
+        views.save()
+        return views
+
 #! CBV for creating blog posts
 class PostCreateView(LoginRequiredMixin, CreateView): # make sure you add your mixins to the left. They should be inherited first, in other words
     model = Post
