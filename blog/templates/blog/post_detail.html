@@ -32,6 +32,14 @@
                     </div>
                     {% comment %} <small class="text-muted">{{ post.date_posted|date:"F d, Y" }}</small> {% endcomment %}
                     <small class="text-muted">Posted {{ object.date_posted|timesince }} ago</small>
+                    <br>
+
+                    <div class="d-flex gap-2 flex-row-reverse">
+                        {% if object.author == user %}
+                            <a class="btn btn-danger" href="{% url 'post-delete' object.pk %}">Delete</a>
+                            <a class="btn btn-secondary" href="{% url 'post-update' object.pk %}">Update</a>
+                        {% endif %}
+                    </div>
                 </div>
             </div>
         </div>

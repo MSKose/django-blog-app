@@ -1,11 +1,18 @@
 from django.shortcuts import render
 from .models import Post
 
-# LoginRequiredMixin is simply the class based version for login_required decirator.
-# because er cannot use decorators with classes, we are using mixins instead.
+# LoginRequiredMixin is simply the class based version for login_required decorator.
+# because we cannot use decorators with classes, we are using mixins instead.
 # UserPassesTestMixin mixin is for making sure that only the author can edit the posts
-from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from django.contrib.auth.mixins import (LoginRequiredMixin, 
+    UserPassesTestMixin)
+from django.views.generic import (ListView, 
+    DetailView, 
+    CreateView, 
+    UpdateView, 
+    DeleteView)
+
+
 
 #! FBV for listing blog posts
 def home(request):
@@ -22,7 +29,7 @@ class PostListView(ListView):
     ordering = ['-date_posted']
 
 #! CBV for individual blog posts
-class PostDetailView(DetailView):
+class PostDetailView(LoginRequiredMixin, DetailView):
     model = Post
     # actually, for this one lets create the defualt html template file django is looking for. And since this 
     # is a detailview, django's gonna look for a template named 'blog/post_detail.html'. 
@@ -59,7 +66,7 @@ class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView): 
     model = Post
     # fields = ('title', 'content')
-    success_url = 'homepage/'
+    success_url = '/'
 
     def test_func(self): 
         post = self.get_object()
