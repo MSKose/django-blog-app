@@ -26,7 +26,7 @@ class PostListView(ListView):
     model = Post
     template_name = 'blog/home.html' # if I had left this field empty, django would have looked for 'blog/post_list' template cuz it looks for <app>/<model>_<viewtype.html>
     context_object_name = 'posts' # by default django uses the name "object_list". Had this field left empty, I'd have to use object_list to loop through my posts in home.html
-    ordering = ['-date_posted']
+    # ordering = ['-date_posted']
 
 #! CBV for individual blog posts
 class PostDetailView(LoginRequiredMixin, DetailView):
@@ -86,15 +86,18 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 def like_post(request, id):
     if request.method == "POST":
         instance = Post.objects.get(id=id)
+        print(request.user.id, id)
+        print(instance.author)
+        # print(instance.likes.id)
         if not instance.likes.filter(id=request.user.id).exists():
             instance.likes.add(request.user)
             instance.save() 
-            print(instance)
+            # print(instance)
             return render( request, 'blog/likes_area.html', context={'post':instance})
         else:
             instance.likes.remove(request.user)
             instance.save() 
-            print(instance)
+            # print(instance)
             return render( request, 'blog/likes_area.html', context={'post':instance})
 
 

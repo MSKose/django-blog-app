@@ -1,6 +1,6 @@
-<div class="list-group list-group-horizontal btn-group" id="likesarea" role="group" style="display: inline">
+<div class="list-group list-group-horizontal btn-group" id="hey{{post.id}}" role="group" style="display: inline">
     <button hx-post="{% url 'like_post' post.id %}" id="like-button" 
-        hx-target="#likesarea" hx-swap="outerHTML" style="background-color: transparent; border: none;">
+        hx-target="#hey{{post.id}}" hx-swap="outerHTML" style="background-color: transparent; border: none;">
         {% if request.user in post.likes.all %}
             <i class="fa-solid fa-heart" style="color: red;"></i> 
         {% else %}
@@ -8,14 +8,4 @@
         {% endif %}
         <small style="color: white;">{{ post.likes.count }}</small>
     </button>
-</div> 
-
-{% comment %} <div class="list-group list-group-horizontal btn-group" id="likesarea" role="group" style="display: inline; margin-right: 15px;">
-    <i hx-post="{% url 'like_post' post.id %}" id="like-button" 
-        hx-target="#likesarea" hx-swap="outerHTML" class="fa-solid fa-heart"
-        {% if request.user in post.likes.all %}
-             style="color: red;">
-        {% endif %}
-        <small style="margin-left: 2px;">{{ post.likes.count }}</small>
-    </i> 
-</div> {% endcomment %}
+</div>

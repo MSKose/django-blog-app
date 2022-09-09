@@ -17,7 +17,7 @@ class Post(models.Model):
     blog_view = models.IntegerField(default=0)
 
     # I mainly followed this article for reload-free like functionality: https://blog.devgenius.io/django-and-htmx-part-1-ff629ae048f1
-    likes = models.ManyToManyField(User, blank=True, related_name="collected_votes")
+    likes = models.ManyToManyField(User, blank=True, related_name="collected_votes", null=True)
 
 
     def __str__(self):
