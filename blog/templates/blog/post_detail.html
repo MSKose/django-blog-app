@@ -22,15 +22,15 @@
                             <i class="fa-solid fa-comment"></i> <small>0</small>
                         </div>
 
-                        <div style="display: inline; margin-right: 15px;">
+                        <div style="display: inline; margin-right: 7px;">
                             <i class="fa-solid fa-eye"></i> <small>{{object.blog_view}}</small>
                         </div>
 
-                        <div style="display: inline">
-                            <i class="fa-solid fa-heart"></i> <small>8</small>
-                        </div>
+                        {% include "blog/likes_area.html" %}
+                        {% comment %} <div style="display: inline">
+                            <i class="fa-solid fa-heart"></i> <small>{{object.likes.count}}</small>
+                        </div> {% endcomment %}
                     </div>
-                    {% comment %} <small class="text-muted">{{ post.date_posted|date:"F d, Y" }}</small> {% endcomment %}
                     <small class="text-muted">Posted {{ object.date_posted|timesince }} ago</small>
                     <br>
 
@@ -40,6 +40,26 @@
                             <a class="btn btn-secondary" href="{% url 'post-update' object.pk %}">Update</a>
                         {% endif %}
                     </div>
+
+                    <hr class='text-light'>
+                    <h4>Comments</h4>
+                    
+                    {% if not post.comments.all %}
+                        No comments yet... <a href="#">Add one</a>
+                    {% else %}
+                        
+                        {% for comment in post.comments.all %}
+                        <div>
+                            <div>
+                                {{user.username}} - {{comment.date_added|timesince}}
+                            </div>
+                            <p>{{comment.body}}</p>
+                        </div>
+                            
+                        {% endfor %}
+                            
+                    {% endif %}
+                        
                 </div>
             </div>
         </div>
