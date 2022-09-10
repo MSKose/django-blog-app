@@ -1,6 +1,9 @@
+# from urllib import request
 from django.shortcuts import render
 from .models import Post, Comment
 from .forms import CommentForm
+from django.http import HttpResponseRedirect
+
 
 # LoginRequiredMixin is simply the class based version for login_required decorator.
 # because we cannot use decorators with classes, we are using mixins instead.
@@ -12,6 +15,7 @@ from django.views.generic import (ListView,
     CreateView, 
     UpdateView, 
     DeleteView)
+
 
 
 
@@ -32,16 +36,47 @@ class PostListView(ListView):
 #! CBV for individual blog posts
 class PostDetailView(LoginRequiredMixin, DetailView):
     model = Post
-    # actually, for this one lets create the defualt html template file django is looking for. And since this 
+    form = CommentForm
+    # actually, for this one let's create the defualt html template file django is looking for. And since this 
     # is a detailview, django's gonna look for a template named 'blog/post_detail.html'. 
     # not defining our context_object_name, we'll have to use 'object' for every post in our blog/post_detail.html template
+    success_url = '/'
+
+    initial = {'key': 'value'}
+    template_name = 'blog/post_form.html'
+
+    def get(self, request, *args, **kwargs):
+        form = self.form_class(initial=self.initial)
+        return render(request, self.template_name, {'form': form})
+
+    def post(self, request, *args, **kwargs):
+        form = self.form_class(request.POST)
+        if form.is_valid():
+            # <process form cleaned data>
+            return HttpResponseRedirect('/success/')
+
+        return render(request, self.template_name, {'form': form})
+
 
     #? view count part
     def get_object(self):
         views = super().get_object()
         views.blog_view += 1
         views.save()
+        print(CommentForm)
+        print(Post.objects.get(id = views.pk) == views)
+        # if request.method == 'POST':
+        #     print(CommentForm(request.POST))
+        # if form.is_valid():
+        #     comment=form.save(commit=False)
+        #     comment.blog = views
+        #     comment.save()
+
         return views
+
+    def form_valid(self, form):     
+        form.instance.author = self.request.user
+        return super().form_valid(form)
 
 #! CBV for creating blog posts
 class PostCreateView(LoginRequiredMixin, CreateView): # make sure you add your mixins to the left. They should be inherited first, in other words
@@ -49,8 +84,8 @@ class PostCreateView(LoginRequiredMixin, CreateView): # make sure you add your m
     fields = ('title', 'content')
 
     # we are getting a "NOT NULL constraint failed: blog_post.author_id" after posting a blog post which
-    # means that the post needs an author and django by default cannot know who the author is. Therfore,
-    # we'll need to ovveride the form_valid method and set the author before saving it
+    # means that the post needs an author and django by default cannot know who the author is. Therefore,
+    # we'll need to override the form_valid method and set the author before saving it
     def form_valid(self, form):     
         form.instance.author = self.request.user
         return super().form_valid(form)

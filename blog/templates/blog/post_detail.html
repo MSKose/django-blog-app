@@ -49,7 +49,7 @@
                     {% else %} {% endcomment %}
                     
                     
-                    <form action="{% url 'post_comment' user.id %}" method="POST">
+                    <form action="" method="POST">
                         {% csrf_token %}
                         <textarea name="body" 
                         class="form-control" 

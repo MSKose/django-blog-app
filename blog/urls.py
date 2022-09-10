@@ -7,7 +7,7 @@ from .views import (
     PostUpdateView, 
     PostDeleteView, 
     like_post,
-    CommentView
+    # CommentView,
     # post_comment
     )
 
@@ -19,7 +19,7 @@ urlpatterns = [
     path('post/<int:pk>/update/', PostUpdateView.as_view(), name="post-update"),
     path('post/<int:pk>/delete/', PostDeleteView.as_view(), name="post-delete"), # PostDeleteView by default expects a template named post_confirm_delete.html (<model>_confirm_delete.html)
     path('like/<int:id>', like_post, name='like_post'),
-    path('comment/<int:pk>/', CommentView.as_view(template_name="blog/post_comment"), name="post_comment"),
+    # path('comment/<int:pk>/', CommentView.as_view(template_name="blog/post_comment"), name="post_comment"),
     # path('comment/<int:id>', post_comment, name='post_comment'),
     path('about/', about, name="about"),
 ]
