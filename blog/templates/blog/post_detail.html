@@ -32,9 +32,9 @@
                         </div> {% endcomment %}
                     </div>
                     <small class="text-muted">Posted {{ object.date_posted|timesince }} ago</small>
-                    <br>
+                    
 
-                    <div class="d-flex gap-2 flex-row-reverse">
+                    <div class="d-flex gap-2 flex-row-reverse mt-2">
                         {% if object.author == user %}
                             <a class="btn btn-danger" href="{% url 'post-delete' object.pk %}">Delete</a>
                             <a class="btn btn-secondary" href="{% url 'post-update' object.pk %}">Update</a>
@@ -44,22 +44,35 @@
                     <hr class='text-light'>
                     <h4>Comments</h4>
                     
-                    {% if not post.comments.all %}
-                        No comments yet... <a href="#">Add one</a>
-                    {% else %}
+                    {% comment %} {% if not post.comments.all %}
+                        No comments yet... <a href="#" class="text-decoration-none">add one</a>
+                    {% else %} {% endcomment %}
+                    
+                    
+                    <form action="{% url 'post_comment' user.id %}" method="POST">
+                        {% csrf_token %}
+                        <textarea name="body" 
+                        class="form-control" 
+                        id="{{object.user.id}}" autofocus
+                        {% if not post.comments.all %}
+                            placeholder="No comment yet... add one" ></textarea>
+                        {% else %}
+                            placeholder="Leave a comment here" ></textarea>
+                        {% endif %}
+                            
+                        <button type="submit" class="btn btn-success mt-2">Add</button>
+                        <hr>
+                    </form>
                         
                         {% for comment in post.comments.all %}
-                        <div>
-                            <div>
-                                {{user.username}} - {{comment.date_added|timesince}}
+                        <div class='border rounded p-2 pb-0 mb-2 mt-2'>
+                            <div class='border-bottom border-secondary p-2 mb-1'>
+                                {{user.username}} - <small class='text-secondary'>{{comment.date_added|timesince}} ago</small>
                             </div>
                             <p>{{comment.body}}</p>
                         </div>
                             
                         {% endfor %}
-                            
-                    {% endif %}
-                        
                 </div>
             </div>
         </div>

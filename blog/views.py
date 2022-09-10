@@ -1,5 +1,6 @@
 from django.shortcuts import render
-from .models import Post
+from .models import Post, Comment
+from .forms import CommentForm
 
 # LoginRequiredMixin is simply the class based version for login_required decorator.
 # because we cannot use decorators with classes, we are using mixins instead.
@@ -47,7 +48,7 @@ class PostCreateView(LoginRequiredMixin, CreateView): # make sure you add your m
     model = Post
     fields = ('title', 'content')
 
-    # we are getting an "NOT NULL constraint failed: blog_post.author_id" after posting a blog post which
+    # we are getting a "NOT NULL constraint failed: blog_post.author_id" after posting a blog post which
     # means that the post needs an author and django by default cannot know who the author is. Therfore,
     # we'll need to ovveride the form_valid method and set the author before saving it
     def form_valid(self, form):     
@@ -86,8 +87,8 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 def like_post(request, id):
     if request.method == "POST":
         instance = Post.objects.get(id=id)
-        print(request.user.id, id)
-        print(instance.author)
+        # print(request.user.id, id)
+        # print(instance.author)
         # print(instance.likes.id)
         if not instance.likes.filter(id=request.user.id).exists():
             instance.likes.add(request.user)
@@ -100,6 +101,23 @@ def like_post(request, id):
             # print(instance)
             return render( request, 'blog/likes_area.html', context={'post':instance})
 
+# def post_comment(request, id):
+#     model = Comment.objects.get(id=id)
+#     comment = CommentForm(instance=model)
+
+#     if request.method == "POST":
+#         comment = CommentForm(request.POST, instance=model)
+#         # instance = CommentForm(request, id=id)
+#         if comment.is_valid():
+#             comment.save() 
+#             return render( request, 'blog/post_comment.html', context={'comment':comment})
+
+# class CommentView(CreateView):
+#     model = Comment
+
+#     template_name = 'blog/post_comment.html'
+
+#     fields = ('post', 'body','date_added')
 
 def about(request):
     return render(request, 'blog/about.html')

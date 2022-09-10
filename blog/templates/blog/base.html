@@ -27,35 +27,35 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto">
               <li class="nav-item">
-                <a class="nav-link" href="{% url 'about' %}">About</a>
+                <a class="nav-link fs-4" href="{% url 'about' %}">About</a>
               </li>
             </ul>
             <ul class="navbar-nav d-flex flex-row">
               
               {% if user.is_authenticated %}
               <li class="nav-item me-3 me-lg-0">
-                <a class="nav-link" href="{% url 'post-create' %}">
+                <a class="nav-link fs-4" href="{% url 'post-create' %}">
                   New Post
                 </a>
               </li>
                 <li class="nav-item me-3 me-lg-0">
-                  <a class="nav-link" href="{% url 'profile' %}">
+                  <a class="nav-link fs-4" href="{% url 'profile' %}">
                     Profile
                   </a>
                 </li>
                 <li class="nav-item me-3 me-lg-0">
-                  <a class="nav-link" href="{% url 'logout' %}">
+                  <a class="nav-link fs-4" href="{% url 'logout' %}">
                     Logout
                   </a>
                 </li>
               {% else %}
                 <li class="nav-item me-3 me-lg-0">
-                  <a class="nav-link" href="{% url 'login' %}">
+                  <a class="nav-link fs-4" href="{% url 'login' %}">
                     Login
                   </a>
                 </li>
                 <li class="nav-item me-3 me-lg-0">
-                  <a class="nav-link" href="{% url 'register' %}">
+                  <a class="nav-link fs-4" href="{% url 'register' %}">
                     Register
                   </a>
                 </li>
