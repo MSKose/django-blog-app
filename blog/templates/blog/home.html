@@ -20,11 +20,11 @@
                             <p class="card-text">{{ post.content }}</p>
                             <div>
                                 <div style="display: inline; margin-right: 15px;">
-                                    <i class="fa-solid fa-comment"></i> <small>0</small>
+                                    <i class="fa-solid fa-comment"></i> <small>{{ post.blog_comment }}</small>
                                 </div>
 
                                 <div style="display: inline; margin-right: 7px;">
-                                    <i class="fa-solid fa-eye"></i> <small>{{post.blog_view}}</small>
+                                    <i class="fa-solid fa-eye"></i> <small>{{ post.blog_view }}</small>
                                 </div>
 
                                 {% include "blog/likes_area.html" %}

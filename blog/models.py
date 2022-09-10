@@ -19,6 +19,10 @@ class Post(models.Model):
     # I mainly followed this article for reload-free like functionality: https://blog.devgenius.io/django-and-htmx-part-1-ff629ae048f1
     likes = models.ManyToManyField(User, blank=True, related_name="collected_votes", null=True)
 
+    # comment count
+    blog_comment = models.PositiveIntegerField(default=0)
+
+
 
     def __str__(self):
         return self.title
@@ -31,6 +35,7 @@ class Post(models.Model):
     
 class Comment(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name="comments") 
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="comments_user", null=True) 
     # name = models.CharField(max_length=255)
     body = models.TextField()
     date_added = models.DateTimeField(default=timezone.now)
