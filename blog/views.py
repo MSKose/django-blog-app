@@ -1,7 +1,7 @@
 # from urllib import request
 from django.shortcuts import render, redirect
 from .models import Post, Comment
-from .forms import CommentForm
+from .forms import CommentForm, PostUpdateForm
 # from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 
@@ -60,9 +60,11 @@ class PostListView(ListView):
 
 #! FBV for individual blog posts
 @login_required
-def blog_detail(request, id):
-    post = Post.objects.get(id=id)
+def blog_detail(request, pk):
+    post = Post.objects.get(id=pk)
+    print(post.post_image)
     form = CommentForm()
+    form_blog= PostUpdateForm()
     comments = Comment.objects.filter(post=post.id)
     post.blog_view += 1
     post.save()
@@ -97,7 +99,7 @@ class PostCreateView(LoginRequiredMixin, CreateView): # make sure you add your m
 #! CBV for updating blog posts
 class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView): 
     model = Post
-    fields = ('title', 'content')
+    fields = ('title', 'content', 'post_image')
 
     def form_valid(self, form):     
         form.instance.author = self.request.user

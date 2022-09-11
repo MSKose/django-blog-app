@@ -25,6 +25,9 @@
       <nav class="navbar navbar-expand-sm navbar-light fixed-top mask-custom shadow-0 navbar-css">
         <div class="container">
           <a class="navbar-brand" href="{% url 'homepage' %}"><i class="fa-solid fa-house" style="color: #84fab0"></i></span></a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto">
               <li class="nav-item">
@@ -71,7 +74,7 @@
       <!-- Navbar -->
     
       <!-- Messages -->
-        <div class="col-md-8 d-flex justify-content-center m-auto alert-this">
+        <div class="col-md-8 d-flex justify-content-center m-auto" id='alert-this'>
           {% if messages %}
             {% for message in messages %}
               <div class="alert alert-{{ message.tags }} d-flex justify-content-center">
@@ -92,6 +95,20 @@
         crossorigin="anonymous"
       ></script>
 
-      <script src="{% static 'blog/js/main.js' %}"></script>
+      <script>
+        let element = document.querySelector('#alert-this');
+        setTimeout(function () {
+            element.classList.add("d-none");
+        }, 3000);
+
+
+
+        document.body.addEventListener('htmx:configRequest', (e) => {
+            e.detail.headers['X-CSRFToken'] = '{{ csrf_token }}';
+          })
+      </script>
+      
+
+      {% comment %} <script src="{% static 'blog/js/main.js' %}"></script> {% endcomment %}
   </body>
 </html>

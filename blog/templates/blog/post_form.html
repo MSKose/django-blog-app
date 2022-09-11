@@ -20,12 +20,12 @@
               <div class="" style="color: #fff;">
                   <label for="floatingTextarea2" style="margin-bottom: 6px;">Content*</label>
                   <br>
-                  {% render_field form.content placeholder="Content here"  style="width: 100%;"%}
+                  {% render_field form.content placeholder="Content here"  style="width: 100%; border-radius: 10px;"%}
               </div>
 
               <div class="mb-3" style="color: #fff;">
                 <label for="formFile" class="form-label">Blog Image</label>
-                {% render_field form.post_image class='form-control' placeholder="myusername" id="formFile" type="file"%}
+                {% render_field form.post_image class='form-control' placeholder="myusername" id="formFile" name="post_image"%}
               </div>
 
               <hr class='text-light'>
