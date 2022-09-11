@@ -17,7 +17,7 @@
                                 <h2 class="card-title">{{ post.author }}</h2>
                             </div>
                             <h4><a class="article-title" href="{% url 'post-detail' post.pk %}">{{ post.title }}</a></h4>
-                            <p class="card-text">{{ post.content }}</p>
+                            <p class="card-text" id='card-text-home'>{{ post.content }}</p>
                             <div>
                                 <div style="display: inline; margin-right: 15px;">
                                     <i class="fa-solid fa-comment"></i> <small>{{ post.blog_comment }}</small>

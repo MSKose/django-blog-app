@@ -182,7 +182,7 @@ h1 a{color:#131313; font-weight:bold;}
     border-color:#4E5E30;
 }
 
-.card-body.pt-0  .card-text{
+#card-text-home{
   /* display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;  
@@ -191,6 +191,10 @@ h1 a{color:#131313; font-weight:bold;}
   overflow: hidden; 
   width: 270px; 
   white-space: nowrap;
+}
+
+#card-text-detail{
+  overflow: auto;
 }
 
 i:hover {
