@@ -32,7 +32,7 @@ class PostListView(ListView):
     model = Post
     template_name = 'blog/home.html' # if I had left this field empty, django would have looked for 'blog/post_list' template cuz it looks for <app>/<model>_<viewtype.html>
     context_object_name = 'posts' # by default django uses the name "object_list". Had this field left empty, I'd have to use object_list to loop through my posts in home.html
-    # ordering = ['-date_posted']
+    ordering = ['-date_posted']
 
 #! CBV for individual blog posts
 # class PostDetailView(LoginRequiredMixin, DetailView):
@@ -84,7 +84,8 @@ def blog_detail(request, id):
 #! CBV for creating blog posts
 class PostCreateView(LoginRequiredMixin, CreateView): # make sure you add your mixins to the left. They should be inherited first, in other words
     model = Post
-    fields = ('title', 'content')
+    fields = ('title', 'content', 'post_image')
+    success_url = '/'
 
     # we are getting a "NOT NULL constraint failed: blog_post.author_id" after posting a blog post which
     # means that the post needs an author and django by default cannot know who the author is. Therefore,

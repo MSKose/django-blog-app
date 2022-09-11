@@ -16,6 +16,7 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="shortcut icon" type="image/png" href="{% static 'blog/images/favicon.png' %}"/>
     <link rel="stylesheet" href="{% static 'blog/css/main.css' %}">
   </head>
   <body>
@@ -70,10 +71,10 @@
       <!-- Navbar -->
     
       <!-- Messages -->
-        <div class="col-md-8">
+        <div class="col-md-8 d-flex justify-content-center m-auto alert-this">
           {% if messages %}
             {% for message in messages %}
-              <div class="alert alert-{{ message.tags }}">
+              <div class="alert alert-{{ message.tags }} d-flex justify-content-center">
                 {{ message }}
               </div>
             {% endfor %}
@@ -83,16 +84,14 @@
       {% block content %}{% endblock %}
       
       <script src="https://unpkg.com/htmx.org@1.8.0" integrity="sha384-cZuAZ+ZbwkNRnrKi05G/fjBX+azI9DNOkNYysZ0I/X5ZFgsmMiBXgDZof30F5ofc" crossorigin="anonymous"></script>
-      <script>
-        document.body.addEventListener('htmx:configRequest', (e) => {
-          e.detail.headers['X-CSRFToken'] = '{{ csrf_token }}';
-          })
-      </script>
+      
 
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
-      crossorigin="anonymous"
-    ></script>
+      <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+        crossorigin="anonymous"
+      ></script>
+
+      <script src="{% static 'blog/js/main.js' %}"></script>
   </body>
 </html>

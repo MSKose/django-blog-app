@@ -7,8 +7,9 @@
     <article class="media content-section container d-flex justify-content-center">
     	<div class="row container css">
             <div class="card profile-card-5 col-md-4">
-                <div class="card-img-block">
-                    <img class="card-img-top" src="{{post.author.profile.image.url}}" alt="Card image cap">
+                <div class="card-img-block-blog-image">
+                    {% comment %} <img class="card-img-top" src="{{post.author.profile.image.url}}" alt="Card image cap"> {% endcomment %}
+                    <img id="id-card-img-block-blog-image" class="card-img-top" src="{{post.post_image.url}}" alt="Card image cap">
                 </div>
 
                 <div class="card-body pt-0">

@@ -2,6 +2,7 @@ from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
 from django.urls import reverse
+from PIL import Image
 
 
 class Post(models.Model):
@@ -12,6 +13,7 @@ class Post(models.Model):
     # since we want to delete the posts related to the author if author is deleted, we use on_delete=models.CASCADE
     # but, notice that the opposite is not true; if a post is deleted author won't be deleted. It is called cascade for a reason
     author = models.ForeignKey(User, on_delete=models.CASCADE) 
+    post_image = models.ImageField(default="blog_default.jpg", upload_to="blog_pics")
 
     # see here for view reference: https://stackoverflow.com/a/61745605
     blog_view = models.IntegerField(default=0)
@@ -32,6 +34,16 @@ class Post(models.Model):
     # error. Thus, defining a get_absolute_url we make sure that we are directed to "post-detail"
     def get_absolute_url(self):
         return reverse("post-detail", kwargs={"pk": self.pk})
+
+    def save(self, *args, **kwargs):  # this function already exists in our super() we are ovveriding it to make sure images are uploaded on the scale we wanted them to be
+        super().save(*args, **kwargs)
+
+        img = Image.open(self.post_image.path)
+
+        if img.height > 300 or img.width > 300:
+            output_size = (400, 400)
+            img.thumbnail(output_size)
+            img.save(self.post_image.path)
     
 class Comment(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name="comments") 

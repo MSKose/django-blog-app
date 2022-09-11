@@ -10,7 +10,7 @@
           </div>
           <div class="card-body p-4 p-sm-5">
             <h5 class="card-title text-center mb-5 fw-light fs-2 text-light">Create a Post</h5>
-            <form method="POST">
+            <form method="POST" enctype="multipart/form-data">
               {% csrf_token %}
               <div class=" mb-3" style="color: #fff;">
                   <label for="id_username" class="form-label requiredField">Title*</label>
@@ -21,6 +21,11 @@
                   <label for="floatingTextarea2" style="margin-bottom: 6px;">Content*</label>
                   <br>
                   {% render_field form.content placeholder="Content here"  style="width: 100%;"%}
+              </div>
+
+              <div class="mb-3" style="color: #fff;">
+                <label for="formFile" class="form-label">Blog Image</label>
+                {% render_field form.post_image class='form-control' placeholder="myusername" id="formFile" type="file"%}
               </div>
 
               <hr class='text-light'>

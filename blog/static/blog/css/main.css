@@ -156,6 +156,20 @@ h1 a{color:#131313; font-weight:bold;}
   width: 180px;
 }
 
+.profile-card-5 .card-img-block-blog-image{
+    margin: 0 auto;
+    position: relative;
+    top: -30px;
+}
+
+#id-card-img-block-blog-image {
+  /* max-height: 240px; */
+  max-width: 360px !important;
+  object-fit: cover;
+  border-radius:5px;
+  box-shadow: 0 0 50px rgba(0,0,0,0.93);
+}
+
 .profile-card-5 h5{
     font-weight:600;
 }
