@@ -39,6 +39,7 @@ li a.nav-link {
 }
 
 .mask-custom {
+  -webkit-backdrop-filter: blur(5px);
   backdrop-filter: blur(5px);
   opacity: 1 !important;
   background: rgba(0, 0, 0, 0.4);
@@ -89,6 +90,7 @@ li a.nav-link {
 
 
 .poqiwehfoiwef{
+  -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
   opacity: 1 !important;
   background: rgba(0, 0, 0, 0.6);
@@ -114,6 +116,7 @@ h1 a{color:#131313; font-weight:bold;}
   justify-content: center;
 } */
 
+
 .row.container.css {
   gap: 15px;
   justify-content: space-around;
@@ -123,6 +126,7 @@ h1 a{color:#131313; font-weight:bold;}
   width: 410px;
   color:#ffffff;
   margin-top:50px;
+  -webkit-backdrop-filter: blur(5px);
   backdrop-filter: blur(5px);
   opacity: 1 !important;
   background: rgba(0, 0, 0, 0.8);
@@ -203,3 +207,24 @@ i:hover {
   transform: scale(1.1);
   /* color: #8e8e8e !important; */
 }
+
+/* Alert Messages */
+#alert-this{
+  display: inline-block;
+  margin: 0px auto;
+  position: fixed;
+  transition: all 0.5s ease-in-out 0s;
+  z-index: 1031;
+  top: 75px;
+  right: 10px;
+  max-width: max-content;
+}
+
+/* Media for navbar hamburger menu */
+@media only screen and (max-width: 575px) {
+
+  #navbarSupportedContent > ul.navbar-nav.d-flex.flex-row {
+    display: block !important;
+  }
+}
+

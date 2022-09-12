@@ -25,8 +25,8 @@
       <nav class="navbar navbar-expand-sm navbar-light fixed-top mask-custom shadow-0 navbar-css">
         <div class="container">
           <a class="navbar-brand" href="{% url 'homepage' %}"><i class="fa-solid fa-house" style="color: #84fab0"></i></span></a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" style="color: white !important;">
+            <span class="navbar-toggler-icon" style="color: white !important;"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto">
@@ -74,7 +74,7 @@
       <!-- Navbar -->
     
       <!-- Messages -->
-        <div class="col-md-8 d-flex justify-content-center m-auto" id='alert-this'>
+        <div class="col-md-8" id='alert-this'>
           {% if messages %}
             {% for message in messages %}
               <div class="alert alert-{{ message.tags }} d-flex justify-content-center">

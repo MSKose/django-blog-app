@@ -1,6 +1,19 @@
+{% comment %} 
+ The if-else statement in line 9-13 is to make sure that sure is directed to the login page, and, else, if user is
+ already logged in, let them like the content on homepage.
+ The second if-else is to make sure the color changes when a button is liked 
+{% endcomment %}
+
+
 <div class="list-group list-group-horizontal btn-group" id="hey{{post.id}}" role="group" style="display: inline">
     <button hx-post="{% url 'like_post' post.id %}" id="like-button" 
-        hx-target="#hey{{post.id}}" hx-swap="outerHTML" style="background-color: transparent; border: none;">
+        hx-target="#hey{{post.id}}" hx-swap="outerHTML" style="background-color: transparent; border: none;"  
+        {% if user.is_authenticated %} 
+         >
+        {% else %}
+        onclick="location.href='{% url 'post-detail' post.id %}'">            
+        {% endif %}
+            
         {% if request.user in post.likes.all %}
             <i class="fa-solid fa-heart" style="color: red;"></i> 
         {% else %}
@@ -9,3 +22,4 @@
         <small style="color: white;">{{ post.likes.count }}</small>
     </button>
 </div>
+
