@@ -80,7 +80,7 @@ def blog_detail(request, pk):
             post.blog_view -= 2
             post.save()
             comment.save()
-            return redirect("post-detail", id)
+            return redirect("post-detail", pk)
     return render(request, 'blog/post_detail.html', {'post': post, 'form': form, 'comments': comments})
 
 #! CBV for creating blog posts
