@@ -21,6 +21,7 @@
 ## Table of Contents
 
 - [Overview](#overview)
+- [Stack & Tools](#stack)
 - [How to use](#how-to-use)
 - [Contact](#contact)
 
@@ -32,22 +33,23 @@ This is my first Full-Stack project where I did both the Back-End and the Front-
 
 ![screenshot](https://user-images.githubusercontent.com/16707738/92399059-5716eb00-f132-11ea-8b14-bcacdc8ec97b.png)
 
-### Stack & Tools
+<h2 id="stack">Stack & Tools</h2>
 
 <!-- This section should list any major frameworks that you built your project using. Here are a few examples.-->
 
 - Django
+- Bootstrap
 - HTML
 - CSS
 - HTMX
 - JavaScript
 
 
-## How To Use
+## How To Use 
 
-<!-- This is an example, please update according to your application -->
+To clone and run this application, you'll need [Git](https://git-scm.com)
 
-```
+```bash
 # Clone this repository
 $ git clone https://github.com/MSKose/django-blog-app
 
@@ -58,6 +60,7 @@ $ git clone https://github.com/MSKose/django-blog-app
     $ pip install -r requirements.txt
 
 # Add .env file
+    add your SECRET_KEY in a .env file
 
 # Run the app
     $ python manage.py runserver
