@@ -22,6 +22,7 @@
 
 - [Overview](#overview)
 - [Stack & Tools](#stack)
+- [Project Structure](#project-structure)
 - [How to use](#how-to-use)
 - [Contact](#contact)
 
@@ -44,6 +45,84 @@ This is my first Full-Stack project where I did both the Back-End and the Front-
 - HTMX
 - JavaScript
 
+## Project Structure
+
+```bash
+.──── django-blog-app (repo)
+│
+├─── README.md
+├── blog
+│   ├── __init__.py
+│   ├── __pycache__
+│   ├── admin.py
+│   ├── apps.py
+│   ├── forms.py
+│   ├── migrations
+│   │   ├── __init__.py
+│   │   └── __pycache__
+│   ├── models.py
+│   ├── static
+│   │   └── blog
+│   │       ├── css
+│   │       │   └── main.css
+│   │       ├── images
+│   │       │   ├── bg.jpeg
+│   │       │   └── favicon.png
+│   │       └── js
+│   │           └── main.js
+│   ├── templates
+│   │   └── blog
+│   │       ├── about.html
+│   │       ├── base.html
+│   │       ├── home.html
+│   │       ├── likes_area.html
+│   │       ├── post_comment.html
+│   │       ├── post_confirm_delete.html
+│   │       ├── post_detail.html
+│   │       └── post_form.html
+│   ├── tests.py
+│   ├── urls.py
+│   └── views.py
+├── db.sqlite3
+├── main
+│   ├── __init__.py
+│   ├── __pycache__
+│   ├── asgi.py
+│   ├── settings.py
+│   ├── urls.py
+│   └── wsgi.py
+├── manage.py
+├── media
+│   ├── blog_default.jpg
+│   ├── blog_pics
+│   │   └── javascript.png
+│   ├── default.jpg
+│   └── profile_pics
+│       └── profile_pic.jpg
+├── requirements.txt
+└── users
+    ├── __init__.py
+    ├── __pycache__
+    ├── admin.py
+    ├── apps.py
+    ├── forms.py
+    ├── migrations
+    │   ├── 0001_initial.py
+    │   ├── __init__.py
+    │   └── __pycache__
+    ├── models.py
+    ├── signals.py
+    ├── templates
+    │   └── users
+    │       ├── login.html
+    │       ├── logout.html
+    │       ├── profile.html
+    │       └── register.html
+    ├── tests.py
+    ├── urls.py
+    └── views.py
+
+```
 
 ## How To Use 
 
