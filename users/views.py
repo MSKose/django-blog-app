@@ -17,7 +17,7 @@ def register(request):
         form = UserRegisterForm()
     return render(request, 'users/register.html', {'form': form})
 
-@login_required    # FBV decorator making sure user is logged in to get access to /profile/, make sure to add LOGIN_URL = 'login' in the settings.py too. Otherwise the default is accounts/login
+@login_required    # FBV decorator makes sure user is logged in to get access to /profile/, make sure to add LOGIN_URL = 'login' in the settings.py too. Otherwise the default is accounts/login
 def profile(request):
     if request.method == "POST":
         u_form = UserUpdateForm(request.POST, instance=request.user)

@@ -30,8 +30,8 @@ def home(request):
 #! CBV for listing blog posts
 class PostListView(ListView):
     model = Post
-    template_name = 'blog/home.html' # if I had left this field empty, django would have looked for 'blog/post_list' template cuz it looks for <app>/<model>_<viewtype.html>
-    context_object_name = 'posts' # by default django uses the name "object_list". Had this field left empty, I'd have to use object_list to loop through my posts in home.html
+    template_name = 'blog/home.html' # if I had left this field empty, django would have looked for 'blog/post_list' template cuz it looks for <app>/<model>_<viewtype.html> by default
+    context_object_name = 'posts' # by default, django uses the name "object_list". If this field was left empty, I'd have to use object_list to loop through my posts in home.html
     ordering = ['-date_posted']
 
 #! CBV for individual blog posts

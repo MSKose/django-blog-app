@@ -9,16 +9,16 @@ class Post(models.Model):
     title = models.CharField(max_length=100)
     content = models.TextField()
     date_posted = models.DateTimeField(default=timezone.now)
-    # since one post can have one author but one author can have multiple posts we use many-to-1 relation
-    # since we want to delete the posts related to the author if author is deleted, we use on_delete=models.CASCADE
-    # but, notice that the opposite is not true; if a post is deleted author won't be deleted. It is called cascade for a reason
+    # since one post can have one author but one author can have multiple posts, we use many-to-1 relation since we want
+    # to delete the posts related to the author if author is deleted, we use on_delete=models.CASCADE. However, notice
+    # that the opposite is not true; if a post is deleted, author won't be deleted. It is called cascade for a reason
     author = models.ForeignKey(User, on_delete=models.CASCADE) 
     post_image = models.ImageField(default="blog_default.jpg", upload_to="blog_pics")
 
     # see here for view reference: https://stackoverflow.com/a/61745605
     blog_view = models.IntegerField(default=0)
 
-    # I mainly followed this article for reload-free like functionality: https://blog.devgenius.io/django-and-htmx-part-1-ff629ae048f1
+    # I mainly followed this article for reload-free functionality: https://blog.devgenius.io/django-and-htmx-part-1-ff629ae048f1
     likes = models.ManyToManyField(User, blank=True, related_name="collected_votes", null=True)
 
     # comment count
@@ -35,7 +35,7 @@ class Post(models.Model):
     def get_absolute_url(self):
         return reverse("post-detail", kwargs={"pk": self.pk})
 
-    def save(self, *args, **kwargs):  # this function already exists in our super() we are ovveriding it to make sure images are uploaded on the scale we wanted them to be
+    def save(self, *args, **kwargs):  # this function already exists in our super(), we are ovveriding it to make sure images are uploaded on the scale we want them to be
         super().save(*args, **kwargs)
 
         img = Image.open(self.post_image.path)
